@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+  <div id="root"></div>
+  <body>
+    <script type="text/babel">
+      const ActionButton = ({ label, onClick }) => {
+        return (
+          <button className="rounded bg-gray-300 border border-gray-400 px-5" onClick={onClick}>
+            {label}
+          </button>
+        );
+      };
+
+      const DisplayResult = ({ value }) => {
+        return (
+          <h1 className="font-xl font-bold">
+            <span>Resultado:</span>
+            {value != 0 && <span>{value}</span>}
+            {value == 0 && <span>---</span>}
+          </h1>
+        );
+      };
+
+      const Counter = () => {
+        const [newValue, setNewValue] = React.useState(0);
+        const [result, setResult] = React.useState(0);
+
+        const add = () => {
+          setResult(result + newValue);
+        };
+
+        const subtract = () => {
+          setResult(result - newValue);
+        };
+
+        return (
+          <div>
+            <h1 className="font-xl font-bold">Somador</h1>
+
+            <ActionButton label="-" onClick={subtract} />
+            <input
+              type="number"
+              className="border rounded mx-2"
+              value={newValue}
+              onChange={(e) => setNewValue(parseInt(e.target.value))}
+            />
+            <ActionButton label="+" onClick={add} />
+
+            <DisplayResult value={result} />
+          </div>
+        );
+      };
+
+      ReactDOM.render(<Counter />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
