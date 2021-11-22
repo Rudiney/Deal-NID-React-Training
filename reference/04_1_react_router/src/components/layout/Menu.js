@@ -3,11 +3,8 @@ import { Link, useMatch } from "react-router-dom";
 import cn from "classnames";
 
 const menuItems = [
-  { name: "Jogo da Velha", href: "tic_tac_toe", current: true },
-  { name: "Form", href: "form", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-  { name: "Reports", href: "#", current: false },
+  { name: "Jogo da Velha", href: "tic_tac_toe" },
+  { name: "Todo", href: "todo_list" },
 ];
 
 export default function Menu() {
