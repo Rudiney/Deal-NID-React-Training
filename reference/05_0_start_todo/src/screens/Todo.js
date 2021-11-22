@@ -20,14 +20,14 @@ export default function Todo() {
         </div>
         <div>
           <div className="flex mb-4 items-center">
-            <input type="radio" checked={false} className="mx-2 cursor-pointer" />
+            <input type="checkbox" checked={false} className="mx-2 cursor-pointer" />
             <p className="w-full text-grey-darkest">Add another component to Tailwind Components</p>
             <button className="flex-no-shrink p-2 ml-2 border-2 rounded text-red-500 border-red-500 hover:text-white hover:bg-red-500">
               Remove
             </button>
           </div>
           <div className="flex mb-4 items-center">
-            <input type="radio" checked={true} className="mx-2 cursor-pointer" />
+            <input type="checkbox" checked={true} className="mx-2 cursor-pointer" />
             <p className="w-full line-through text-green">
               Submit Todo App Component to Tailwind Components
             </p>
