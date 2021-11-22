@@ -5,7 +5,10 @@ export default function NewTodoForm({ placeholder, onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(title);
+    if (title.length) {
+      onSubmit(title);
+      setTitle("");
+    }
   };
 
   return (
