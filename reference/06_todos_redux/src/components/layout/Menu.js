@@ -1,6 +1,7 @@
 import { Link, useMatch } from "react-router-dom";
 
 import cn from "classnames";
+import { useSelector } from "react-redux";
 
 import { useTodos } from "../../contexts/TodoContext";
 
@@ -15,7 +16,7 @@ export default function Menu() {
         <div className="h-16 flex items-center space-x-4">
           <MenuItem name="Jogo da Velha" href="tic_tac_toe" />
           <MenuItem name="Todo List" href="todo_list" badge={notDoneTodos.length} />
-          <MenuItem name="Redux Todo" href="redux_todo" />
+          <ReduxTodoMenuItem />
         </div>
       </div>
     </nav>
@@ -41,4 +42,9 @@ const MenuItem = ({ name, href, badge }) => {
       )}
     </Link>
   );
+};
+
+const ReduxTodoMenuItem = () => {
+  const notDoneTodos = useSelector((state) => state.todos.filter((todo) => !todo.done));
+  return <MenuItem name="Redux Todo" href="redux_todo" badge={notDoneTodos.length} />;
 };
