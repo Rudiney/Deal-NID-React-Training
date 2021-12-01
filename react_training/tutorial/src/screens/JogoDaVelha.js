@@ -1,7 +1,8 @@
 import { useState } from "react";
-import Square from "./components/Square";
+import Square from "../components/Square";
+import ScreenHeader from "../components/ScreenHeader";
 
-import calculateWinner from "./utils/calculateWinner";
+import calculateWinner from "../utils/calculateWinner";
 
 function JogoDaVelha() {
   const [displayMove, setDisplayMove] = useState(0);
@@ -40,46 +41,56 @@ function JogoDaVelha() {
   const isPast = displayMove < history.length - 1;
 
   return (
-    <div className="w-full flex items-center justify-center">
-      <div className="border border-blue-500 rounded-xl mt-20">
-        <h1 className="text-xxl font-bold p-2">Jogo da Velha</h1>
-        <h1 className="text-xxl font-bold p-2">Proximo a jogar: {nextPlayer}</h1>
+    <>
+      <ScreenHeader title="Jogo da Velha" />
 
-        {nextPlayer == "X" ? (
-          <h1 className="text-xxl font-bold p-2">XISSS</h1>
-        ) : (
-          <h1 className="text-xxl font-bold p-2">Bolinha</h1>
-        )}
+      <div className="max-w-7xl mx-auto py-6 px-4">
+        <div className="w-full flex items-center justify-center">
+          <div className="border border-blue-500 rounded-xl mt-20">
+            <h1 className="text-xxl font-bold p-2">Jogo da Velha</h1>
+            <h1 className="text-xxl font-bold p-2">Proximo a jogar: {nextPlayer}</h1>
 
-        {winner && <h1 className="text-xxl font-bold p-2">Vencedor é: {winner}</h1>}
-        {deuVelha && <h2 className="font-bold p-2 text-red-500 bg-red-100">DEU VELHAA</h2>}
+            {nextPlayer == "X" ? (
+              <h1 className="text-xxl font-bold p-2">XISSS</h1>
+            ) : (
+              <h1 className="text-xxl font-bold p-2">Bolinha</h1>
+            )}
 
-        {(winner || deuVelha) && <button onClick={reset} className="px-2 border rounded">RESET</button>}
-        <div className="border rounded w-56 grid grid-cols-3">
-          {squares.map((value, index) => {
-            return (
-              <Square
-                key={index}
-                value={value}
-                onClick={() => handleClick(index)}
-                disabled={winner || isPast}
-              />
-            );
-          })}
-        </div>
-        <div className="flex justify-around">
-          <button className="border rounded px-2" onClick={showPreviousMove}>
-            {"<"}
-          </button>
-          <span>
-            move {displayMove} de {history.length - 1}
-          </span>
-          <button className="border rounded px-2" onClick={showNextMove}>
-            {">"}
-          </button>
+            {winner && <h1 className="text-xxl font-bold p-2">Vencedor é: {winner}</h1>}
+            {deuVelha && <h2 className="font-bold p-2 text-red-500 bg-red-100">DEU VELHAA</h2>}
+
+            {(winner || deuVelha) && (
+              <button onClick={reset} className="px-2 border rounded">
+                RESET
+              </button>
+            )}
+            <div className="border rounded w-56 grid grid-cols-3">
+              {squares.map((value, index) => {
+                return (
+                  <Square
+                    key={index}
+                    value={value}
+                    onClick={() => handleClick(index)}
+                    disabled={winner || isPast}
+                  />
+                );
+              })}
+            </div>
+            <div className="flex justify-around">
+              <button className="border rounded px-2" onClick={showPreviousMove}>
+                {"<"}
+              </button>
+              <span>
+                move {displayMove} de {history.length - 1}
+              </span>
+              <button className="border rounded px-2" onClick={showNextMove}>
+                {">"}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
