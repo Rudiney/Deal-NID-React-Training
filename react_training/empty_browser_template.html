@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+  </head>
+
+  <div id="root"></div>
+
+  <body>
+    <script type="text/babel">
+      const DisplayResult = ({ value }) => {
+        return (
+          <h1 className="font-xl font-bold">
+            <span>Resultado: </span>
+            <span>{value == 0 ? "Nadaa" : value}</span>
+          </h1>
+        );
+      };
+
+      const ActionButton = ({ color, label, onClick }) => {
+        return (
+          <button
+            className={`rounded bg-${color}-300 border border-${color}-600 px-5`}
+            onClick={onClick}
+          >
+            {label}
+          </button>
+        );
+      };
+
+      const Square = (props) => {
+        const [value, setValue] = React.useState(0); //Hooks
+        return (
+          <button className="square" onClick={() => this.setValue("X")}>
+            {this.state.value}
+          </button>
+        );
+      };
+
+      const App = () => {
+        const [newValue, setNewValue] = React.useState(0);
+        const [currentResult, setCurrentResult] = React.useState(10);
+
+        const add = () => {
+          const newResult = currentResult + newValue;
+          setCurrentResult(newResult);
+          setNewValue(0);
+        };
+
+        const subtract = () => {
+          const newResult = currentResult - newValue;
+          setCurrentResult(newResult);
+          setNewValue(0);
+        };
+
+        return (
+          <div>
+            <h1 className="font-xl font-bold">Somador</h1>
+
+            <ActionButton color="blue" label="-" onClick={subtract} />
+
+            <input
+              type="number"
+              className="border rounded"
+              value={newValue}
+              onChange={(e) => setNewValue(parseInt(e.target.value))}
+            />
+
+            <ActionButton color="red" label="+" onClick={add} />
+
+            <DisplayResult value={currentResult} />
+          </div>
+        );
+      };
+
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
