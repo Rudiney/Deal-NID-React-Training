@@ -7,6 +7,11 @@ function App() {
   const [displayMove, setDisplayMove] = useState(0);
   const [history, setHistory] = useState([[null, null, null, null, null, null, null, null, null]]);
 
+  const reset = () => {
+    setDisplayMove(0);
+    setHistory([[null, null, null, null, null, null, null, null, null]]);
+  };
+
   const handleClick = (index) => {
     const currentSquares = history[history.length - 1];
     const newSquares = [...currentSquares];
@@ -32,7 +37,7 @@ function App() {
   const winner = calculateWinner(squares);
   const fullBoard = !squares.includes(null);
   const deuVelha = fullBoard && !winner;
-  const isPast = displayMove < history.length - 1
+  const isPast = displayMove < history.length - 1;
 
   return (
     <div className="w-full flex items-center justify-center">
@@ -49,6 +54,7 @@ function App() {
         {winner && <h1 className="text-xxl font-bold p-2">Vencedor é: {winner}</h1>}
         {deuVelha && <h2 className="font-bold p-2 text-red-500 bg-red-100">DEU VELHAA</h2>}
 
+        {(winner || deuVelha) && <button onClick={reset} className="px-2 border rounded">RESET</button>}
         <div className="border rounded w-56 grid grid-cols-3">
           {squares.map((value, index) => {
             return (
