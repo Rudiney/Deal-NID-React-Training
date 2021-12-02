@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const Geolocation = navigator.geolocation;
-const ApiKey = "28b424166ff87d0cec979c39d4fd635e";
+const ApiKey = "7a47acf45077d3a6154dfe4a94728385";
 
 export const weatherSlice = createSlice({
   name: "weather",
