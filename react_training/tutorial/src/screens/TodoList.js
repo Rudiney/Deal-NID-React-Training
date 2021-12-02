@@ -1,30 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ScreenHeader from "../components/ScreenHeader";
 import TodoListItem from "../components/Todo/TodoListItem";
 import NewTodoForm from "../components/Todo/NewTodoForm";
 
-import addTodo from "../utils/addTodo";
+import { useTodos } from "../contexts/TodoContext";
 
 export default function TodoListScreen() {
-  const [todos, setTodos] = useState([]);
-
-  const addNewTodo = (newTodoTitle) => setTodos(addTodo(todos, newTodoTitle));
-
-  const removeTodo = (toRemove) => {
-    const newTodos = todos.filter((todo) => todo.id != toRemove.id);
-    setTodos(newTodos);
-  };
-
-  const toggleTodo = (todo) => {
-    const newTodos = [...todos];
-    const indexToUpdate = todos.indexOf(todo);
-    newTodos[indexToUpdate] = { ...todo, done: !todo.done };
-    setTodos(newTodos);
-  };
+  const { todos, addNewTodo, removeTodo, toggleTodo } = useTodos();
 
   return (
     <>
-      <ScreenHeader title="Todo List" />
+      <ScreenHeader>Todo List</ScreenHeader>
 
       <NewTodoForm onSubmit={addNewTodo} />
 

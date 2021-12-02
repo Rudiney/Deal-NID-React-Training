@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Square from "../components/Square";
 import ScreenHeader from "../components/ScreenHeader";
 
@@ -42,7 +42,7 @@ function JogoDaVelha() {
 
   return (
     <>
-      <ScreenHeader title="Jogo da Velha" />
+      <ScreenHeader>Jogo da Velha</ScreenHeader>
 
       <div className="max-w-7xl mx-auto py-6 px-4">
         <div className="w-full flex items-center justify-center">
