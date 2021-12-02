@@ -2,9 +2,12 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { useTodos } from "../contexts/TodoContext";
+import { useSelector } from "react-redux";
 
 export default function AppMenu() {
   const { todos, addNewTodo } = useTodos();
+
+  const reduxTodos = useSelector((state) => state.todos.allTodos);
 
   const notDoneTodos = todos.filter((todo) => !todo.done);
 
@@ -27,6 +30,10 @@ export default function AppMenu() {
           <button className="text-white" onClick={createFakeTodo}>
             Criar
           </button>
+
+          <Link to="/todo_list_redux" className="px-3 py-2 rounded-md text-sm font-medium text-white">
+            Todo List em Redux (XX/{reduxTodos.length})
+          </Link>
         </div>
       </div>
     </nav>
